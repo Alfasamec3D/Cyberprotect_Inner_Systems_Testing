@@ -93,6 +93,8 @@ def test_page_navigating(page):
     for row in row_ex:
         add_row(page,row)
 
+    first_row_text_before = page.locator(".rt-tr-group").nth(0).inner_text()
+
     #Нажимаем "Next"
     page.locator("button:has-text('Next')").click()
 
@@ -106,9 +108,9 @@ def test_page_navigating(page):
     #Нажимаем " previous"
     page.locator("button:has-text('Previous')").click()
     page.wait_for_timeout(1000)
-    first_row_text_before = page.locator(".rt-tr-group").nth(0).inner_text()
+    first_row_text_after = page.locator(".rt-tr-group").nth(0).inner_text()
 
-    assert first_row_text_before== first_row_text_before
+    assert first_row_text_before== first_row_text_after
 
     #Ввод номера страницы
     input_box = page.locator("input[aria-label='jump to page']")
